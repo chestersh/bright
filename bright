@@ -1,0 +1,24 @@
+#проверяю ввели ли параметр в скрипте если нет даю сообщение
+if [ -n "$1" ]
+then
+true
+else
+echo "введите параметр иначе ничего не сработает ;-)"
+fi
+#проверка введённого параметра на сон или пробуждение
+while [ -n "$1" ]
+do
+case "$1" in
+-s)
+xrandr --output LVDS-1-1 --brightness 0.2
+xrandr --output HDMI-1-1 --brightness 0.2
+echo "Спокойной ночи!";;
+-u)
+xrandr --output LVDS-1-1 --brightness 1
+xrandr --output HDMI-1-1 --brightness 1
+echo "Доброе утро! :-)";;
+*)
+echo "Надо ввести параметр -s чтобы потушить экран -u чтобы сделать его снова ярким";;
+esac
+shift
+done
